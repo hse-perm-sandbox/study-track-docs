@@ -7,7 +7,7 @@ C4Container
 
     System_Boundary(boundary, "Система StudyTrack) {
         Container(app, "Web-приложение", "[Python]", "Помогает планировать<br>задачи и<br>выставлять дедлайны")
-        ContainerDb(db, "База данных", "PostgreSQL", "Хранит данные о пользователях")
+        Container(db, "База данных", "PostgreSQL", "Хранит данные о пользователях")
     }
 
     System_Ext(api, "API", "Стандартный API")
