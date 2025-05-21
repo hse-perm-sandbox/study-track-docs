@@ -5,8 +5,8 @@
 C4Container
     title Диаграмма контейнеров системы web-приложения StudyTrack
 
-    System_Boundary(boundary, "Система StudyTrack) {
-        Container(app, "Web-приложение", "[Python]", "Помогает планировать <br>задачи и <br>выставлять дедлайны")
+    System_Boundary(boundary, "Система StudyTrack") {
+        Container(app, "Web-приложение", "Python", "Помогает планировать <br>задачи и <br>выставлять дедлайны")
         ContainerDb(db, "База данных", "PostgreSQL", "Хранит данные о пользователях")
     }
 

@@ -4,10 +4,6 @@
 ```mermaid
 C4Component
     title Диаграмма компонентов web-приложения StudyTrack
-
-    System_Boundary(ext, "Внешние системы") {
-        System_Ext(api, "API", "Стандартный API")
-    }
     
     System_Boundary(boundary, "Система StudyTrack") {
         Container_Boundary(web_container, "Контейнер: web-приложение") {
@@ -17,6 +13,7 @@ C4Component
                 Component(front_repo, "STUDY-TRACK-FRONT", "Python", "фронт системы")
             }
         }
+
         Container_Boundary(db_container, "Контейнер: База данных") {
             ContainerDb(db, "База данных", "PostgreSQL", "Хранит данные о пользователях")
         }
@@ -24,19 +21,17 @@ C4Component
 
     Rel(api_repo, db, "Чтение/запись", "SQL")
     UpdateRelStyle(user_repo, db, $offsetX="0", $offsetY="-40")
-    Rel(front_repo, db, "Чтение/запись", "SQL")
-    UpdateRelStyle(user_repo, db, $offsetX="0", $offsetY="-40")
+    Rel(front_repo, api_repo, "Перенаправление запросов")
 
 ```
 
 ## Описание диаграммы
 Диаграмма отображает внутреннюю структуру системы  на уровне компонентов. Система разделена на два основных контейнера:
 1. Контейнер web-приложения включает:
-  - !!тут должен быть ещё один контейнер!!
   - Репозитории (работают с данными через БД).
 2. Контейнер базы данных:
   - PostgreSQL (хранит данные пользователей и их вопросы)
 
 Ключевые взаимодействия:
-- !!тут должна быть связь
-- Репозитории работают с базой данных.
+- Репозиторий фронта отправляет запрос в бек.
+- Репозиторий бека обрабатывает информацию из базы данных в соответствии с запросом.
