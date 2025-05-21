@@ -3,10 +3,10 @@
 
 ```mermaid
 C4Component
-    title Диаграмма компонентов ...
+    title Диаграмма компонентов web-приложения StudyTrack
 
     System_Boundary(ext, "Внешние системы") {
-        System_Ext(swagger UI, "API", "Стандартный API")
+        System_Ext(api, "API", "Стандартный API")
     }
     
     System_Boundary(boundary, "Система StudyTrack") {

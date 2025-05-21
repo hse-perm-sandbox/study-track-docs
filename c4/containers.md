@@ -3,8 +3,30 @@
 
 ```mermaid
 C4Container
-    title Диаграмма контейнеров системы ...
+    title Диаграмма контейнеров системы web-приложения StudyTrack
+
+    System_Boundary(ext, "Система StudyTrack) {
+        Container(app, "Web-приложение", "[Python]", "Помогает планировать<br>задачи и<br>выставлять дедлайны")
+        Container(db, "База данных", "PostgreSQL", "Хранит данные о пользователях")
+    }
+
+    System_Ext(api, "API", "Стандартный API")
+
+    Rel(app, db, "Читает/Обновляет данные", "SQL")
+    Rel(app, api, "Создание записей, обновление данных", "[HTTPS]")
+
+    UpdateRelStyle(app, api, $offsetY="-40")
+    UpdateRelStyle(app, db, $offsetY="50")
+    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
 ```
 
 ## Описание диаграммы
-...
+## Описание контейнеров:
+1. Web-приложение (Python):
+- Создание задач.
+- Создание дедлайнов.
+2. База данных (PostgreSQL):
+- Хранит данные о пользователях (пароли, имена, список задач и т.д.).
+
+## Внешние системы:
+1. API — сервер для работы web-приложения. Обеспечивает коммуникацию с пользователями.
