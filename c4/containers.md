@@ -7,7 +7,7 @@ C4Container
 
     System_Boundary(ext, "Система StudyTrack) {
         Container(app, "Web-приложение", "[Python]", "Помогает планировать<br>задачи и<br>выставлять дедлайны")
-        Container(db, "База данных", "PostgreSQL", "Хранит данные о пользователях")
+        ContainerDb(db, "База данных", "PostgreSQL", "Хранит данные о пользователях")
     }
 
     System_Ext(api, "API", "Стандартный API")
@@ -20,7 +20,6 @@ C4Container
     UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
 ```
 
-## Описание диаграммы
 ## Описание контейнеров:
 1. Web-приложение (Python):
 - Создание задач.
