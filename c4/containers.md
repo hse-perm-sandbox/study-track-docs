@@ -13,6 +13,8 @@ C4Container
 
     Rel(back, db, "Читает/Обновляет данные", "SQL")
     Rel(front, back, "Отправляет запрос на обработку данных", "HTTPS")
+
+    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
 ```
 
 ## Описание контейнеров:
