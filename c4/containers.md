@@ -14,6 +14,8 @@ C4Container
     Rel(back, db, "Читает/Обновляет данные", "SQL")
     Rel(front, back, "Отправляет запрос на обработку данных", "HTTPS")
 
+    UpdateRelStyle(back, db, $offsetY="10")
+    UpdateRelStyle(front, back, $offsetX="-85")
     UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
 ```
 
