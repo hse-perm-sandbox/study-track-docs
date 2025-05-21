@@ -6,18 +6,13 @@ C4Container
     title Диаграмма контейнеров системы web-приложения StudyTrack
 
     System_Boundary(boundary, "Система StudyTrack") {
-        Container(app, "Web-приложение", "Python", "Помогает планировать <br>задачи и <br>выставлять дедлайны")
+        Container(front, "Front", "Python", "Реализует взаимодействие <br>с пользователем <br>Оболочка системы")
         ContainerDb(db, "База данных", "PostgreSQL", "Хранит данные о пользователях")
+        Container(back, "Back", "Python", "Обеспечивает функционал <br>системы <br>Работа с БД")
     }
 
-    System_Ext(api, "API", "Стандартный API")
-
-    Rel(app, db, "Читает/Обновляет данные", "SQL")
-    Rel(app, api, "Создание записей, обновление данных", "[HTTPS]")
-
-    UpdateRelStyle(app, api, $offsetY="-40")
-    UpdateRelStyle(app, db, $offsetY="50")
-    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
+    Rel(back, db, "Читает/Обновляет данные", "SQL")
+    Rel(front, back, "Отправляет запрос на обработку данных", "HTTPS")
 ```
 
 ## Описание контейнеров:
