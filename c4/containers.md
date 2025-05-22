@@ -6,16 +6,16 @@ C4Container
     title Диаграмма контейнеров системы web-приложения StudyTrack
 
     System_Boundary(boundary, "Система StudyTrack") {
-        Container(front, "Front", "Python", "Реализует взаимодействие <br>с пользователем <br>Оболочка системы")
-        ContainerDb(db, "База данных", "PostgreSQL", "Хранит данные о пользователях")
+        Container(front, "Front", "JavaScript", "Реализует взаимодействие <br>с пользователем <br>Оболочка системы")
+        ContainerDb(db, "База данных", "PostgreSQL", "Хранит данные приложения")
         Container(back, "Back", "Python", "Обеспечивает функционал <br>системы <br>Работа с БД")
     }
 
     Rel(back, db, "Читает/Обновляет данные", "SQL")
     Rel(front, back, "Отправляет запрос на обработку данных", "HTTPS")
 
-    UpdateRelStyle(back, db, $offsetY="10")
-    UpdateRelStyle(front, back, $offsetX="-85")
+    UpdateRelStyle(back, db, $offsetY="40")
+    UpdateRelStyle(front, back, $offsetX="-165")
     UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
 ```
 
