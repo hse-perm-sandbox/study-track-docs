@@ -6,30 +6,54 @@ C4Component
     title Диаграмма компонентов web-приложения StudyTrack
     
     System_Boundary(boundary, "Система StudyTrack") {
-        Container_Boundary(web_container, "Контейнер: web-приложение") {
 
-            Boundary(repos, "Репозитории") {
-                Component(api_repo, "STUDY-TRACK-API", "Python", "бек системы")
-                Component(front_repo, "STUDY-TRACK-FRONT", "Python", "фронт системы")
-            }
+        Container_Boundary(front_container, "Контейнер: Front") {
+            Component(front_services, "Сервисы", "", "Выполняют низкоуровневые<br>операции")
+            Component(components, "Компоненты", "", "Координирую взаимодействие<br>с сервисами")
+            Component(pages, "Страницы", "", "Высокоуровневые части<br>системы")
+        }
+        
+        Container_Boundary(back_container, "Контейнер: Back") {
+            Component(control, "Контроллеры", "", "Отвечает за приём<br> и проверку запросов")
+            Component(back_services, "Сервисы", "", "Обработка основной логики<br>и сложных алгоритмов")
+            Component(repos, "Репозитории", "", "Обеспечивают механизм CRUD<br>и связь с базой данных")
         }
 
         Container_Boundary(db_container, "Контейнер: База данных") {
-            ContainerDb(db, "База данных", "PostgreSQL", "Хранит данные о пользователях")
+            ComponentDb(db, "База данных", "PostgreSQL", "Хранит данные о пользователях")
         }
     }
 
-    Rel(api_repo, db, "Чтение/запись", "SQL")
-    UpdateRelStyle(user_repo, db, $offsetX="0", $offsetY="-40")
-    Rel(front_repo, api_repo, "Перенаправление запросов")
+    UpdateLayoutConfig($c4ShapeInRow="1", $c4BoundaryInRow="3")
 
+    Rel(pages, components, "Координируют поведение")
+    UpdateRelStyle(pages, components, $offsetX="-160")
+
+    Rel(front_services, components, "Обеспечивают корректную работу<br>компонентов с данными")
+    UpdateRelStyle(front_services, components, $offsetX="-190")
+
+    Rel(front_services, control, "Отправка запросов/<br>получение данных")
+    UpdateRelStyle(front_services, control, $offsetX="-45", $offsetY="-37")
+
+    Rel(control, back_services, "Перенаправление запросов")
+
+    Rel(back_services, repos, "Вызов методов")
+    UpdateRelStyle(back_services, repos, $offsetX="-100")
+
+    Rel(repos, db, "Отправка/получение данных")
 ```
 
 ## Описание диаграммы
-Диаграмма отображает внутреннюю структуру системы  на уровне компонентов. Система разделена на два основных контейнера:
-1. Контейнер web-приложения включает:
+Диаграмма отображает внутреннюю структуру системы  на уровне компонентов. Система разделена на три основных контейнера:
+1. Контейнер Back включает:
+  - Контроллеры (принимают и проверяют запросы сервиса)
+  - Сервисы (выполняют запросы сервиса, вызывают методы)
   - Репозитории (работают с данными через БД).
-2. Контейнер базы данных:
+3. Контейнер Front включает:
+  - Сервисы (обеспечивают связь фронта и бека)
+  - Компоненты (обрабатывают бизнес-логику и взаимодействие с сервисами)
+  - Страницы (включают набор компонентов и взаимодействует с сервисами для обработки данных)
+4. Контейнер базы данных:
   - PostgreSQL (хранит данные пользователей и их вопросы)
 
 Ключевые взаимодействия:
