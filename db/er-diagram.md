@@ -17,11 +17,11 @@ erDiagram
 
     task {
         integer id PK
-        integer user_id
+        integer ***user_id*** FK
         string name
         string description
         date deadline
-        integer ***category_id*** FK
+        integer category_id
         integer priority
     }
 
