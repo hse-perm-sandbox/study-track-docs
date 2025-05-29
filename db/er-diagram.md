@@ -21,14 +21,14 @@ erDiagram
         string name
         string description
         date deadline
-        integer category_id
+        integer ***category_id*** FK
         integer priority
     }
 
     notification {
         integer id PK
         integer ***task_id*** FK
-        date datetime
+        date time_notification
         string type
     }
 
