@@ -13,8 +13,6 @@ C4Context
 
     Rel(client, app, "Планирует задачи")
     UpdateRelStyle(client, app, $offsetX="-130", $offsetY="-50")
-    Rel(app, client, "Напоминает о дедлайнах")
-    UpdateRelStyle(app, client, $offsetY="-22", $offsetX="15")
 
 ```
 
@@ -24,4 +22,3 @@ C4Context
 
 ## Описание взаимодействий
 1. Пользователь планирует задачи в системе (создает список задач, выставляет дедлайны и т.д.).
-2. Web-приложение оповещает о дедлайнах.
