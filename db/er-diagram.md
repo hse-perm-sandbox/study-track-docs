@@ -25,16 +25,6 @@ erDiagram
         integer priority
     }
 
-    notification {
-        integer id PK
-        integer ***task_id*** FK
-        date time_notification
-        string type
-    }
-
-
     users ||--o{ category : "задает"
     category ||--o{ task : "содержит"
-    task ||--o{ notification : "содержит"
-    
 ```

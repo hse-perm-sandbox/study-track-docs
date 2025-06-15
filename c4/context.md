@@ -5,7 +5,7 @@
 C4Context
     title Система планировщика задач StudyTrack
 
-    Enterprise_Boundary(ST, "Планировщик задач 'StudyTrack'") {
+    Enterprise_Boundary(ST, "Планировщик задач 'Study Track'") {
         System(app, "Web-приложение", "Среда для планирования задач")
     }
 
